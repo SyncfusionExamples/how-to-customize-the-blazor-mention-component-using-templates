@@ -1,0 +1,110 @@
+﻿@page "/"
+
+<SfMention TItem="EmployeeData" Target="#mentionIntegration .e-rte-content .e-content"
+           PopupHeight="200px" PopupWidth="350px">
+    
+           @*<ItemTemplate>
+             <img src="@((context as UserData).UserImage)" />
+             <span>@((context as UserData).Name)</span>
+             <span class='email'>@((context as UserData).EmailId)</span>
+
+           </ItemTemplate>
+
+           <DisplayTemplate>
+             <span>Username:@((context as UserData).Name) </span>
+             <span>Email Id: @((context as UserData).EmailId)</span>
+           </DisplayTemplate>*@
+
+           <SpinnerTemplate>
+               <div class="spinner_loader"></div>
+           </SpinnerTemplate>
+
+           <NoRecordsTemplate>
+               <span>No Data Available</span>
+           </NoRecordsTemplate>
+
+           <ChildContent>
+             <MentionFieldSettings Text="FirstName" ></MentionFieldSettings>
+             @*<SfDataManager Url="https://ej2services.syncfusion.com/production/web-services/api/Employees" Adaptor="Syncfusion.Blazor.Adaptors.WebApiAdaptor" ></SfDataManager>*@
+       
+           </ChildContent>
+</SfMention>
+
+<SfRichTextEditor ID="mentionIntegration"></SfRichTextEditor>
+
+
+
+
+
+
+@code {
+
+    public class EmployeeData
+    {
+        public int EmployeeID { get; set; }
+        public string FirstName { get; set; }
+      
+    }
+
+    public class UserData
+    {
+        public string Name { get; set; }
+        public string EmailId { get; set; }
+        public string UserImage { get; set; }
+
+    }
+
+    public List<UserData> data = new List<UserData>()
+    {
+
+        new UserData { Name= "Selma Rose", EmailId="selmarose@gmail.com", UserImage="/images/3.png" },
+        new UserData { Name = "Maria", EmailId="maria@gmail.com", UserImage="/images/4.png" },
+        new UserData { Name = "Russo kay", EmailId="russokay@gmail.com", UserImage="/images/6.png" },
+        new UserData { Name = "Robert", EmailId="robert@gmail.com", UserImage="/images/7.png" },
+        new UserData { Name = "Garth", EmailId="garth@gmail.com", UserImage="/images/8.png" }
+
+    };
+}
+
+<style>
+    .email
+    {
+        right: 15px;
+        top: 6px;
+        position: absolute;
+    }
+
+    .spinner_loader
+    {
+        border: 10px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 10px solid #3498db;
+        width: 5px;
+        height: 5px;
+        position: absolute;
+        top: 6px;
+        left: 85px;
+        -webkit-animation: spin 2s linear infinite; /* Safari */
+        animation: spin 2s linear infinite;
+    }
+    /* Safari */
+    @@-webkit-keyframes spin {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+
+        100% {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+
+    @@keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+</style>
